@@ -59,8 +59,7 @@ public class DataAnalyzer {
 	 */
 
 	public DataAnalyzer(String symbolDesired) throws IOException, ParseException {
-		
-			//TODO
+		loadData(symbolDesired+".csv");
 	}
 	/**
 	 * This method will take care of parsing the market data of the specified symbol. 
@@ -78,8 +77,11 @@ public class DataAnalyzer {
 	 * @throws ParseException 
 	 */
 	private TreeMap<Date, Double> loadData(String symbol) throws IOException, ParseException {
-		//TODO
-	
+		BufferedReader br = new BufferedReader(new FileReader(symbol));
+		while(br.readLine() != null) {
+			
+		}
+		
 	}
 	/**
 	 * Given a string representation of a date, parse it into Date object.
