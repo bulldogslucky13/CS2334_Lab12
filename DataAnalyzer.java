@@ -119,7 +119,6 @@ public class DataAnalyzer {
 	 * @return the string representation of close price converted into a double.
 	 */
 	public Double formattedClosePrices(String closePrice){
-		System.out.println(closePrice);
 		return Double.parseDouble(closePrice);
 		
 	}

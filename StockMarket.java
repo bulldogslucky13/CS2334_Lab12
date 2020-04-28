@@ -76,7 +76,7 @@ public class StockMarket extends Application {
 		stage.setScene(scene);
 		stage.show();
 		
-		String filename = "plots" + File.separator + "StockData.png";
+		String filename = "src/plots" + File.separator + "StockData.png";
         saveScene(scene, filename);
 
 	}
