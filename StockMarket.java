@@ -28,7 +28,7 @@ public class StockMarket extends Application {
 	public void start(Stage stage) throws IOException, ParseException {
 		stage.setTitle("Stock Market Data");
 		DataAnalyzer da_AAL = new DataAnalyzer("AAL");
-		//TODO: Create a DataAnalyzer object and pass the "AAPL" symbol
+		DataAnalyzer da_AAPL = new DataAnalyzer("AAPL");
 
 		
 		// Create a CategoryAxis for the xAxis which says that our will xAxis will be of type string
@@ -37,59 +37,51 @@ public class StockMarket extends Application {
 		final NumberAxis yAxis = new NumberAxis();
 		
 		TreeMap<Date, Double> data_AAL = da_AAL.getData();
-		// TODO: Create a Hashmap object and retrieve the data from the DataAnalyzer for the "AAPL" data.
+		TreeMap<Date, Double> data_AAPL = da_AAPL.getData();
 
 		
 		ArrayList<Date>dates_AAL = da_AAL.getDates();
-		
-		//TODO: Create an ArrayList object and retrieve the dates from the DataAnalyzer for the "AAPL" data.
+		ArrayList<Date>dates_AAPL = da_AAPL.getDates();
 
-		//TODO: set the label for the xAxis
+		
 		xAxis.setLabel("Day");
 		
 		// Create the LineChart object passing in the xAxis and yAxis
 		final LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
-
-		//TODO: set the title of the linechart with your name and student id. for me it is: Feras Salous 113420589
+		lineChart.setTitle("Cameron Bristol 113444055");
 		
 		XYChart.Series series_AAL = new XYChart.Series();
-		
-		//TODO: create another series for the AAPL stock data.
+		XYChart.Series series_AAPL = new XYChart.Series();
 		
 		series_AAL.setName("AAL");
-		
-		// TODO: set the name of the AAPL series as "AAPL"
+		series_AAPL.setName("AAPL");
 
 		for (Date date : dates_AAL) {
 
 			series_AAL.getData()
 					.add(new XYChart.Data(sd.format(date).toString(), data_AAL.get(date) ));
 		}
-		// TODO: Loop through the Dates of the Apple Data and fill the points for the series.
-		
-		
 
-		//TODO: Create a Scene object named scene ,and pass in the lineChart, set the width = 800 and the height = to 600
+		for(Date date : dates_AAPL) {
+			series_AAPL.getData()
+				.add(new XYChart.Data(sd.format(date).toString(), data_AAPL.get(date)));
+		}
+		
+		Scene scene = new Scene(lineChart, 800, 600);
 		
 		
 		lineChart.getData().addAll(series_AAL);
+		lineChart.getData().addAll(series_AAPL);
 		
-		//TODO: Add the Apple series into the linechart.
+		stage.setScene(scene);
+		stage.show();
 		
-		// TODO: set the stage scene to the scene object created above
-		
-		
-		//TODO: show the stage
-
-		
-		//This takes an image of your gui, refresh eclipse to see the changes.
 		String filename = "plots" + File.separator + "StockData.png";
         saveScene(scene, filename);
 
 	}
 	 public static void saveScene(Scene scene, String filename) throws
      IOException {
-
 		 // Convert the given Scene to an image that can be written to a file.
 		 WritableImage image = scene.snapshot(null);
 		 BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
@@ -99,8 +91,6 @@ public class StockMarket extends Application {
 	 }
 	 
 	public static void main(String[] args) throws IOException, ParseException {
-
-		  
 		launch(args);
 	}
 }

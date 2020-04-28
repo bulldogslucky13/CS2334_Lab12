@@ -96,6 +96,7 @@ public class DataAnalyzer {
 			closePrices.add(doubleToAdd);
 			currLine = br.readLine();
 		}
+		br.close();
 		return toReturn;
 		
 	}
