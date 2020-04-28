@@ -29,3 +29,6 @@ Please refer to the Project 3 example source file for details on creating LineCh
 **Here is how your final LineChart should appear**
 
 ![Lab12](StockDataBoth.png)
+
+**Here is how my file looks**
+![Final Product](StockData.png)
