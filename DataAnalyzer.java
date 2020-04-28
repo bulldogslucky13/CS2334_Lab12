@@ -59,7 +59,10 @@ public class DataAnalyzer {
 	 */
 
 	public DataAnalyzer(String symbolDesired) throws IOException, ParseException {
-		loadData(symbolDesired+".csv");
+		StringBuffer sb = new StringBuffer (symbolDesired);
+		sb.append(".csv");
+		String path = sb.toString();
+		loadData(path);
 	}
 	/**
 	 * This method will take care of parsing the market data of the specified symbol. 
