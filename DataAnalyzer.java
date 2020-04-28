@@ -80,10 +80,18 @@ public class DataAnalyzer {
 	 * @throws ParseException 
 	 */
 	private TreeMap<Date, Double> loadData(String symbol) throws IOException, ParseException {
+		TreeMap<Date, Double> toReturn = new TreeMap<Date, Double>();
 		BufferedReader br = new BufferedReader(new FileReader(symbol));
-		while(br.readLine() != null) {
-			
+		String currLine = br.readLine();
+		while(currLine != null) {
+			String[] currLineSplit = new String[2];
+			currLineSplit = currLine.trim().split(",");
+			Date dateToAdd = DATE_FORMATTER.parse(currLineSplit[0]);
+			Double doubleToAdd = Double.parseDouble(currLineSplit[1]);
+			toReturn.put(dateToAdd, doubleToAdd);
+			currLine = br.readLine();
 		}
+		return toReturn;
 		
 	}
 	/**
