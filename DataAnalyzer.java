@@ -59,6 +59,7 @@ public class DataAnalyzer {
 	 */
 
 	public DataAnalyzer(String symbolDesired) throws IOException, ParseException {
+		this.symbol = symbolDesired;
 		StringBuffer sb = new StringBuffer (symbolDesired);
 		sb.append(".csv");
 		String path = sb.toString();
