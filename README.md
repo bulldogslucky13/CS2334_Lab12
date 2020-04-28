@@ -31,4 +31,5 @@ Please refer to the Project 3 example source file for details on creating LineCh
 ![Lab12](StockDataBoth.png)
 
 **Here is how my file looks**
+
 ![Final Product](plots/StockData.png)
