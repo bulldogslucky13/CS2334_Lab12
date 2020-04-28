@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -47,8 +48,6 @@ public class DataAnalyzer {
 	private final int CLOSE_PRICES_POSITION = 1;
 
 	private final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("MM/dd/yyyy");
-
-	private final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.00");
 	/**
 	 * Constructor which takes in the symbol of interest in order to parse the
 	 * correct data file. For example if we receive AAPL, we need to call loadData
@@ -62,6 +61,8 @@ public class DataAnalyzer {
 
 	public DataAnalyzer(String symbolDesired) throws IOException, ParseException {
 		this.setSymbol(symbolDesired);
+		dates = new ArrayList<Date>();
+		closePrices = new ArrayList<Double>();
 		StringBuffer sb = new StringBuffer (symbolDesired);
 		sb.append(".csv");
 		String path = sb.toString();
@@ -84,8 +85,10 @@ public class DataAnalyzer {
 	 */
 	private TreeMap<Date, Double> loadData(String symbol) throws IOException, ParseException {
 		TreeMap<Date, Double> toReturn = new TreeMap<Date, Double>();
-		BufferedReader br = new BufferedReader(new FileReader(symbol));
+		File file = new File("src/"+symbol);
+		BufferedReader br = new BufferedReader(new FileReader(file));
 		String currLine = br.readLine();
+		currLine = br.readLine();
 		while(currLine != null) {
 			String[] currLineSplit = new String[2];
 			currLineSplit = currLine.trim().split(COMMMA_DELIMETER);
@@ -116,7 +119,8 @@ public class DataAnalyzer {
 	 * @return the string representation of close price converted into a double.
 	 */
 	public Double formattedClosePrices(String closePrice){
-		return Double.parseDouble(DECIMAL_FORMAT.format(closePrice));
+		System.out.println(closePrice);
+		return Double.parseDouble(closePrice);
 		
 	}
 	
