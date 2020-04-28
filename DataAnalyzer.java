@@ -47,6 +47,8 @@ public class DataAnalyzer {
 	private final int CLOSE_PRICES_POSITION = 1;
 
 	private final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("MM/dd/yyyy");
+
+	private final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.00");
 	/**
 	 * Constructor which takes in the symbol of interest in order to parse the
 	 * correct data file. For example if we receive AAPL, we need to call loadData
@@ -59,11 +61,11 @@ public class DataAnalyzer {
 	 */
 
 	public DataAnalyzer(String symbolDesired) throws IOException, ParseException {
-		this.symbol = symbolDesired;
+		this.setSymbol(symbolDesired);
 		StringBuffer sb = new StringBuffer (symbolDesired);
 		sb.append(".csv");
 		String path = sb.toString();
-		this.data = loadData(path);
+		this.setData(loadData(path));
 	}
 	/**
 	 * This method will take care of parsing the market data of the specified symbol. 
@@ -113,10 +115,28 @@ public class DataAnalyzer {
 	 * @return the string representation of close price converted into a double.
 	 */
 	public Double formattedClosePrices(String closePrice){
-		return Double.parseDouble(closePrice);
+		return Double.parseDouble(DECIMAL_FORMAT.format(closePrice));
 		
 	}
 	
-	//TODO: Generate getters and setters
+	public String getSymbol() {
+		return symbol;
+	}
+	
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
+	
+	public TreeMap<Date, Double> getData() {
+		return data;
+	}
+	
+	public void setData(TreeMap<Date, Double> data) {
+		this.data = data;
+	}
+	
+	public ArrayList<Date> getDates(){
+		return this.dates;
+	}
 	
 }
