@@ -85,10 +85,12 @@ public class DataAnalyzer {
 		String currLine = br.readLine();
 		while(currLine != null) {
 			String[] currLineSplit = new String[2];
-			currLineSplit = currLine.trim().split(",");
-			Date dateToAdd = parseDate(currLineSplit[0]);
-			Double doubleToAdd = formattedClosePrices(currLineSplit[1]);
+			currLineSplit = currLine.trim().split(COMMMA_DELIMETER);
+			Date dateToAdd = parseDate(currLineSplit[DATE_POSITION]);
+			Double doubleToAdd = formattedClosePrices(currLineSplit[CLOSE_PRICES_POSITION]);
 			toReturn.put(dateToAdd, doubleToAdd);
+			dates.add(dateToAdd);
+			closePrices.add(doubleToAdd);
 			currLine = br.readLine();
 		}
 		return toReturn;
