@@ -86,8 +86,8 @@ public class DataAnalyzer {
 		while(currLine != null) {
 			String[] currLineSplit = new String[2];
 			currLineSplit = currLine.trim().split(",");
-			Date dateToAdd = DATE_FORMATTER.parse(currLineSplit[0]);
-			Double doubleToAdd = Double.parseDouble(currLineSplit[1]);
+			Date dateToAdd = parseDate(currLineSplit[0]);
+			Double doubleToAdd = formattedClosePrices(currLineSplit[1]);
 			toReturn.put(dateToAdd, doubleToAdd);
 			currLine = br.readLine();
 		}
@@ -101,7 +101,7 @@ public class DataAnalyzer {
 	 * @throws ParseException
 	 */
 	public Date parseDate(String date) throws ParseException {
-		//TODO:
+		return DATE_FORMATTER.parse(date);
 		
 	}
 	/**
@@ -110,7 +110,7 @@ public class DataAnalyzer {
 	 * @return the string representation of close price converted into a double.
 	 */
 	public Double formattedClosePrices(String closePrice){
-		//TODO:
+		return Double.parseDouble(closePrice);
 		
 	}
 	
