@@ -63,7 +63,7 @@ public class DataAnalyzer {
 		StringBuffer sb = new StringBuffer (symbolDesired);
 		sb.append(".csv");
 		String path = sb.toString();
-		loadData(path);
+		this.data = loadData(path);
 	}
 	/**
 	 * This method will take care of parsing the market data of the specified symbol. 
